@@ -1,0 +1,10 @@
+package org.integrallis.drools.loans.domain
+
+rule "ACME-Fico"
+	when
+	    mortgage:Mortgage(lender:lenderName == "ACME Mortgage",product:mortgageName)
+		application:LoanApplication( lenders contains lender, ficoScore<680 ) 
+	then
+		application.addMessage("Declined by " + lender + " because a FICO score of at least 680 is required");
+end
+
