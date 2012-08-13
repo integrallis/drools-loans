@@ -10,7 +10,7 @@
 [condition][]- with a Loan Purpose that is not one of \[ {values} \]=loanPurpose not in ( {values} )
 [condition][]- with a Property Type of "{property_type}"=propertyType=="{property_type}"
 [condition][]- with an applicant that is younger that {age} years of age=eval(yearsOfAge(applicant.getDateOfBirth()) < {age})
-[condition][]- with an applicant that is an employee of the lender=applicant.employer==lender
+[condition][]- with an applicant that is an employee of the lender=applicant.employer.equalsIgnoreCase(lender)
 [condition][]- with an applicant that is not a resident=applicant.resident == false
 [consequence][]reject the application because "{message}"=application.addMessage("Declined by " + lender + " because {message}");
 [consequence][]failed to prequalify the application because "{message}"=application.addMessage("Declined by " + lender + " for " + product + " because {message}"); application.setPrequalified(false); update(application);

@@ -21,7 +21,7 @@ public abstract class BaseDroolsTestCase {
 	
 	public BaseDroolsTestCase(String drlFile) { readRules(drlFile); }
 	public BaseDroolsTestCase(String dslrFile, String dslFile) { readRules(dslrFile, dslFile); }
-	public BaseDroolsTestCase(String dslrFile, String dslFile, String rfmFile) { readRules(dslrFile, dslFile, rfmFile); }
+	public BaseDroolsTestCase(String dslrFile, String dslFile, String bpmnFile) { readRules(dslrFile, dslFile, bpmnFile); }
 	
 	@Before
 	public void setUp() throws Exception {
@@ -56,12 +56,12 @@ public abstract class BaseDroolsTestCase {
 		buildKnowledgeBase(knowledgeBuilder);	
 	}
 	
-	private static void readRules(String dslrFile, String dslFile, String rfmFile) {
+	private static void readRules(String dslrFile, String dslFile, String bpmnFile) {
 		KnowledgeBuilder knowledgeBuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();
 		
 		knowledgeBuilder.add(ResourceFactory.newClassPathResource(dslFile), ResourceType.DSL);
 		knowledgeBuilder.add(ResourceFactory.newClassPathResource(dslrFile), ResourceType.DSLR);
-		knowledgeBuilder.add(ResourceFactory.newClassPathResource(rfmFile), ResourceType.DRF);
+		knowledgeBuilder.add(ResourceFactory.newClassPathResource(bpmnFile), ResourceType.BPMN2);
 		
 		buildKnowledgeBase(knowledgeBuilder);
 	}

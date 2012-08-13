@@ -1,0 +1,182 @@
+package org.integrallis.drools.loans.domain
+
+import java.util.Date;
+import java.util.Calendar;
+
+expander loans.dsl
+
+rule "ACME-Fico"
+    ruleflow-group "qualification" 
+	when
+	    the lender is "ACME Mortgage"
+		and there is an application 
+		  - with a FICO score below 680 
+	then
+		reject the application because "a FICO score of at least 680 is required"
+end
+
+rule "ACME-Principal"
+    ruleflow-group "qualification"
+	when
+		the lender is "ACME Mortgage"
+		and there is an application
+		- with a Principal that is less than 50000
+	then
+		reject the application because "a Principal of at least $50,000 is required"
+end
+
+rule "ACME-NumberOfUnits"
+    ruleflow-group "qualification"
+	when
+		the lender is "ACME Mortgage"
+		and there is an application	
+		- with a Number of Units greater than 4
+	then
+		reject the application because "the number of units must not be greater than 4"
+end
+
+rule "ACME-OneUnitPrincipal"
+    ruleflow-group "qualification"
+	when
+		the lender is "ACME Mortgage"
+		and there is an application	
+		- with a Number of Units equal to 1
+		- with a Principal that is equal or greater than 203150
+	then
+		reject the application because "the principal for a 1 unit property must be no more than $203,150"
+end
+
+rule "ACME-TwoUnitsPrincipal"
+    ruleflow-group "qualification"
+	when
+		the lender is "ACME Mortgage"
+		and there is an application	
+		- with a Number of Units equal to 2
+		- with a Principal that is equal or greater than 259850		
+	then
+		reject the application because "the principal for a 2 unit property must be no more than $259,850"		
+end
+
+rule "ACME-ThreeUnitsPrincipal"
+    ruleflow-group "qualification"
+	when
+		the lender is "ACME Mortgage"
+		and there is an application	
+		- with a Number of Units equal to 3
+		- with a Principal that is equal or greater than 314100		
+	then
+		reject the application because "the principal for a 3 unit property must be no more than $314,100"
+end
+
+rule "ACME-FourUnitsPrincipal"
+    ruleflow-group "qualification"
+	when
+		the lender is "ACME Mortgage"
+		and there is an application	
+		- with a Number of Units equal to 4
+		- with a Principal that is equal or greater than 390400		
+	then
+		reject the application because "the principal for a 4 unit property must be no more than $390,400"
+end
+
+rule "ACME-PrincipalMultipleOf50"
+    ruleflow-group "qualification"
+	when
+		the lender is "ACME Mortgage"
+		and there is an application	
+		- with a Principal that is not a multiple of 50
+	then
+		reject the application because "a principal that is a multiple of $50 is required"
+end
+
+rule "ACME-LoanPurpose"
+    ruleflow-group "qualification"
+	when
+	    the lender is "ACME Mortgage"
+		and there is an application
+		- with a Loan Purpose that is not one of [ "Purchase", "Refinance" ]
+	then
+		reject the application because "lender only provides loans for purchasing or refinancing"
+end
+
+rule "ACME-PercentOfProperyPrimaryResidence"
+    ruleflow-group "qualification"
+	when
+	    the lender is "ACME Mortgage"
+		and there is an application
+		- with a Property Type of "Primary Residence"
+		- with a Principal that is equal or more than 70% of the Property Value
+	then
+		reject the application because "lender will not loan more than 70% of the value a primary residence"
+end
+
+rule "ACME-PercentOfProperyInvestmentProperty"
+    ruleflow-group "qualification"
+	when
+	    the lender is "ACME Mortgage"
+		and there is an application
+		- with a Property Type of "Investment Property"
+		- with a Principal that is equal or more than 95% of the Property Value
+	then
+		reject the application because "lender will not loan more than 95% of the value a investment property"
+end
+
+rule "ACME-ApplicantIsTooYoung"
+    ruleflow-group "prequalification"
+    no-loop
+	when
+	    the lender is "ACME Mortgage"
+		and there is an application
+		- with an applicant that is younger that 18 years of age	
+	then
+	    failed to prequalify the application because "the primary applicant must be older than 18 years of age"
+end
+
+rule "ACME-ApplicantMustBeAResident"
+    ruleflow-group "prequalification"
+    no-loop
+	when
+	    the lender is "ACME Mortgage"
+		and there is an application
+		- with an applicant that is not a resident	
+	then
+	    failed to prequalify the application because "the primary applicant must be a US resident"
+end
+
+rule "ACME-ApplicantCannotBeAnEmployee"
+    ruleflow-group "prequalification"
+    no-loop
+	when
+	    the lender is "ACME Mortgage"
+		and there is an application
+		- with an applicant that is an employee of the lender	
+	then
+	    failed to prequalify the application because "the primary applicant cannot be an ACME-Loans employee"
+end
+
+rule "ACME-RecommendQuiting"
+    ruleflow-group "recommendation"
+	when
+	    the lender is "ACME Mortgage"
+		and there is an application
+		- with an applicant that is an employee of the lender	
+	then
+	    recommend "that you quit your job!"
+end
+
+rule "ACME-RecommendACosigner"
+    ruleflow-group "recommendation"
+	when
+	    the lender is "ACME Mortgage"
+		and there is an application
+		- with an applicant that is younger that 18 years of age	
+	then
+	    recommend "that you get a cosigner"
+end
+
+function int yearsOfAge(Date dob) {
+   Calendar calendar = Calendar.getInstance();
+   calendar.setTime(dob);
+   Calendar today = Calendar.getInstance();
+   return today.get(Calendar.YEAR) - calendar.get(Calendar.YEAR);
+}
