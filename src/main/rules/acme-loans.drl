@@ -2,9 +2,41 @@ package org.integrallis.drools.loans.domain
 
 rule "ACME-Fico"
 	when
-	    mortgage:Mortgage(lender:lenderName == "ACME Mortgage",product:mortgageName)
+	    Mortgage(lender:lenderName == "ACME Mortgage",product:mortgageName)
 		application:LoanApplication( lenders contains lender, ficoScore<680 ) 
 	then
 		application.addMessage("Declined by " + lender + " because a FICO score of at least 680 is required");
+end
+
+rule "ACME-Principal"
+	when
+		mortgage:Mortgage(lender:lenderName == "ACME Mortgage",product:mortgageName)
+		application:LoanApplication(lenders contains lender, principal<50000)
+	then
+		application.addMessage("Declined by " + lender + " because a Principal of at least $50,000 is required");
+end
+
+rule "ACME-NumberOfUnits"
+	when
+		mortgage:Mortgage(lender:lenderName == "ACME Mortgage",product:mortgageName)
+		application:LoanApplication(lenders contains lender, numberOfUnits>4)	
+	then
+		application.addMessage("Declined by " + lender + " because the number of units must not be greater than 4");
+end
+
+rule "ACME-OneUnitPrincipal"
+	when
+		mortgage:Mortgage(lender:lenderName == "ACME Mortgage",product:mortgageName)
+		application:LoanApplication(lenders contains lender, numberOfUnits==1, principal>=203150)	
+	then
+		application.addMessage("Declined by " + lender + " because the principal for a 1 unit property must be no more than $203,150");
+end
+
+rule "ACME-PrincipalMultipleOf50"
+	when
+		mortgage:Mortgage(lender:lenderName == "ACME Mortgage",product:mortgageName)
+		application:LoanApplication(lenders contains lender, principal % 50 != 0)	
+	then
+		application.addMessage("Declined by " + lender + " because a principal that is a multiple of $50 is required");
 end
 

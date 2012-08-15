@@ -69,53 +69,53 @@ public class AcmeLoansTest extends BaseDroolsTestCase {
 						.contains(
 								"Declined by ACME Mortgage because a FICO score of at least 680 is required"));
 	}
-//
-//	@Test
-//	public void testACMEPrincipal() {
-//		application.setPrincipal(49950);
-//		knowledgeSession.insert(application);
-//
-//		knowledgeSession.fireAllRules();
-//
-//		assertTrue(
-//				"Application should have been declined because of principal is too low",
-//				application
-//						.getMessages()
-//						.contains(
-//								"Declined by ACME Mortgage because a Principal of at least $50,000 is required"));
-//	}
-//
-//	@Test
-//	public void testACMENumberOfUnits() {
-//		application.setNumberOfUnits(5);
-//		knowledgeSession.insert(application);
-//
-//		knowledgeSession.fireAllRules();
-//
-//		assertTrue(
-//				"Application should have been declined because the number of units is greater than 5",
-//				application
-//						.getMessages()
-//						.contains(
-//								"Declined by ACME Mortgage because the number of units must not be greater than 4"));
-//	}
-//
-//	@Test
-//	public void testACMEOneUnitPrincipal() {
-//		application.setNumberOfUnits(1);
-//		application.setPrincipal(203200);
-//
-//		knowledgeSession.insert(application);
-//
-//		knowledgeSession.fireAllRules();
-//
-//		assertTrue(
-//				"Application should have been declined because the principal for a 1 unit property must be no more than $203,150",
-//				application
-//						.getMessages()
-//						.contains(
-//								"Declined by ACME Mortgage because the principal for a 1 unit property must be no more than $203,150"));
-//	}
+
+	@Test
+	public void testACMEPrincipal() {
+		application.setPrincipal(49950);
+		knowledgeSession.insert(application);
+
+		knowledgeSession.fireAllRules();
+
+		assertTrue(
+				"Application should have been declined because of principal is too low",
+				application
+						.getMessages()
+						.contains(
+								"Declined by ACME Mortgage because a Principal of at least $50,000 is required"));
+	}
+
+	@Test
+	public void testACMENumberOfUnits() {
+		application.setNumberOfUnits(5);
+		knowledgeSession.insert(application);
+
+		knowledgeSession.fireAllRules();
+
+		assertTrue(
+				"Application should have been declined because the number of units is greater than 5",
+				application
+						.getMessages()
+						.contains(
+								"Declined by ACME Mortgage because the number of units must not be greater than 4"));
+	}
+
+	@Test
+	public void testACMEOneUnitPrincipal() {
+		application.setNumberOfUnits(1);
+		application.setPrincipal(203200);
+
+		knowledgeSession.insert(application);
+
+		knowledgeSession.fireAllRules();
+
+		assertTrue(
+				"Application should have been declined because the principal for a 1 unit property must be no more than $203,150",
+				application
+						.getMessages()
+						.contains(
+								"Declined by ACME Mortgage because the principal for a 1 unit property must be no more than $203,150"));
+	}
 //
 //	@Test
 //	public void testACMETwoUnitPrincipal() {
@@ -168,21 +168,21 @@ public class AcmeLoansTest extends BaseDroolsTestCase {
 //								"Declined by ACME Mortgage because the principal for a 4 unit property must be no more than $390,400"));
 //	}
 //
-//	@Test
-//	public void testACMEPrincipalMultipleOf50() {
-//		application.setPrincipal(390401);
-//
-//		knowledgeSession.insert(application);
-//
-//		knowledgeSession.fireAllRules();
-//
-//		assertTrue(
-//				"Application should have been declined because a principal that is a multiple of $50 is required",
-//				application
-//						.getMessages()
-//						.contains(
-//								"Declined by ACME Mortgage because a principal that is a multiple of $50 is required"));
-//	}
+	@Test
+	public void testACMEPrincipalMultipleOf50() {
+		application.setPrincipal(390401);
+
+		knowledgeSession.insert(application);
+
+		knowledgeSession.fireAllRules();
+
+		assertTrue(
+				"Application should have been declined because a principal that is a multiple of $50 is required",
+				application
+						.getMessages()
+						.contains(
+								"Declined by ACME Mortgage because a principal that is a multiple of $50 is required"));
+	}
 //
 //	@Test
 //	public void testACMELoanPurpose() {
