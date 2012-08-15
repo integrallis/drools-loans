@@ -33,13 +33,14 @@ public class Mortgage {
 	}
 	
 	public static Mortgage getMortgage(String name, int term) {
-	      Mortgage result = null;
-	      for (Mortgage mortgage : mortgages) {
-	    	  if (mortgage.getMortgageName().equals(name) && (mortgage.getYears() == term)) {
-	    		  result = mortgage;
-	    	  }
-	      }
-	      return result;
+		Mortgage result = null;
+		for (Mortgage mortgage : mortgages) {
+			if (mortgage.getMortgageName().equals(name)
+					&& (mortgage.getYears() == term)) {
+				result = mortgage;
+			}
+		}
+		return result;
     }
 	
     private String lenderName;
@@ -50,10 +51,10 @@ public class Mortgage {
     public Mortgage() {}
     
     public Mortgage(String mortgageName, String lenderName, double interestRate, int years) {
-    	this.lenderName = lenderName;
-    	this.mortgageName = mortgageName;
-    	this.interestRate = interestRate;
-    	this.years = years;
+		this.lenderName = lenderName;
+		this.mortgageName = mortgageName;
+		this.interestRate = interestRate;
+		this.years = years;
     }
    
 	/**
