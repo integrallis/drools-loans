@@ -29,9 +29,12 @@
     <endEvent id="_7" name="End" >
         <terminateEventDefinition/>
     </endEvent>
+    <scriptTask id="_8" name="Message" >
+      <script>System.out.println(".... Prequalifiying the Application");</script>
+    </scriptTask>
 
     <!-- connections -->
-    <sequenceFlow id="_1-_2" sourceRef="_1" targetRef="_2" />
+    <sequenceFlow id="_8-_2" sourceRef="_8" targetRef="_2" />
     <sequenceFlow id="_5-_3" sourceRef="_5" targetRef="_3" name="constraint" tns:priority="1" >
       <conditionExpression xsi:type="tFormalExpression" language="http://www.jboss.org/drools/rule" >LoanApplication(prequalified == true)</conditionExpression>
     </sequenceFlow>
@@ -41,55 +44,63 @@
     <sequenceFlow id="_2-_5" sourceRef="_2" targetRef="_5" />
     <sequenceFlow id="_3-_6" sourceRef="_3" targetRef="_6" />
     <sequenceFlow id="_4-_7" sourceRef="_4" targetRef="_7" />
+    <sequenceFlow id="_1-_8" sourceRef="_1" targetRef="_8" />
 
   </process>
 
   <bpmndi:BPMNDiagram>
     <bpmndi:BPMNPlane bpmnElement="org.integrallis.drools.loans" >
       <bpmndi:BPMNShape bpmnElement="_1" >
-        <dc:Bounds x="366" y="30" width="48" height="48" />
+        <dc:Bounds x="366" y="9" width="48" height="48" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_2" >
-        <dc:Bounds x="343" y="118" width="99" height="48" />
+        <dc:Bounds x="344" y="185" width="99" height="48" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_3" >
-        <dc:Bounds x="253" y="294" width="80" height="48" />
+        <dc:Bounds x="251" y="370" width="80" height="48" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_4" >
-        <dc:Bounds x="456" y="294" width="113" height="48" />
+        <dc:Bounds x="449" y="367" width="113" height="48" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_5" >
-        <dc:Bounds x="372" y="212" width="48" height="48" />
+        <dc:Bounds x="373" y="275" width="48" height="48" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_6" >
-        <dc:Bounds x="268" y="403" width="48" height="48" />
+        <dc:Bounds x="269" y="474" width="48" height="48" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_7" >
-        <dc:Bounds x="494" y="399" width="48" height="48" />
+        <dc:Bounds x="491" y="468" width="48" height="48" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge bpmnElement="_1-_2" >
-        <di:waypoint x="390" y="54" />
-        <di:waypoint x="392" y="142" />
+      <bpmndi:BPMNShape bpmnElement="_8" >
+        <dc:Bounds x="349" y="97" width="80" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="_8-_2" >
+        <di:waypoint x="389" y="121" />
+        <di:waypoint x="393" y="209" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="_5-_3" >
-        <di:waypoint x="396" y="236" />
-        <di:waypoint x="293" y="318" />
+        <di:waypoint x="397" y="299" />
+        <di:waypoint x="291" y="394" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="_5-_4" >
-        <di:waypoint x="396" y="236" />
-        <di:waypoint x="512" y="318" />
+        <di:waypoint x="397" y="299" />
+        <di:waypoint x="505" y="391" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="_2-_5" >
-        <di:waypoint x="392" y="142" />
-        <di:waypoint x="396" y="236" />
+        <di:waypoint x="393" y="209" />
+        <di:waypoint x="397" y="299" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="_3-_6" >
-        <di:waypoint x="293" y="318" />
-        <di:waypoint x="292" y="427" />
+        <di:waypoint x="291" y="394" />
+        <di:waypoint x="293" y="498" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="_4-_7" >
-        <di:waypoint x="512" y="318" />
-        <di:waypoint x="518" y="423" />
+        <di:waypoint x="505" y="391" />
+        <di:waypoint x="515" y="492" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_1-_8" >
+        <di:waypoint x="390" y="33" />
+        <di:waypoint x="389" y="121" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
