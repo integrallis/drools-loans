@@ -7,6 +7,7 @@ import java.util.Calendar;
 import org.integrallis.drools.junit.BaseDroolsTestCase;
 import org.integrallis.drools.loans.domain.Applicant;
 import org.integrallis.drools.loans.domain.LoanApplication;
+import org.integrallis.drools.loans.domain.MessageCatalog;
 import org.integrallis.drools.loans.domain.Mortgage;
 import org.integrallis.drools.loans.util.LoansUtil;
 import org.junit.Before;
@@ -70,7 +71,7 @@ public class AcmeLoansDSLTest extends BaseDroolsTestCase {
 				application
 						.getMessages()
 						.contains(
-								"Declined by ACME Mortgage because a FICO score of at least 680 is required"));
+								MessageCatalog.MSG_ACME_FICO_680));
 	}
 
 	@Test
@@ -85,7 +86,7 @@ public class AcmeLoansDSLTest extends BaseDroolsTestCase {
 				application
 						.getMessages()
 						.contains(
-								"Declined by ACME Mortgage because a Principal of at least $50,000 is required"));
+								MessageCatalog.MSG_ACME_PRINCIPAL_50K));
 	}
 
 	@Test
@@ -100,7 +101,7 @@ public class AcmeLoansDSLTest extends BaseDroolsTestCase {
 				application
 						.getMessages()
 						.contains(
-								"Declined by ACME Mortgage because the number of units must not be greater than 4"));
+								MessageCatalog.MSG_ACME_4_UNIT_MAX));
 	}
 
 	@Test
@@ -117,7 +118,7 @@ public class AcmeLoansDSLTest extends BaseDroolsTestCase {
 				application
 						.getMessages()
 						.contains(
-								"Declined by ACME Mortgage because the principal for a 1 unit property must be no more than $203,150"));
+								MessageCatalog.MSG_ACME_1_UNIT_PRINCIPAL));
 	}
 
 	@Test
@@ -134,7 +135,7 @@ public class AcmeLoansDSLTest extends BaseDroolsTestCase {
 				application
 						.getMessages()
 						.contains(
-								"Declined by ACME Mortgage because the principal for a 2 unit property must be no more than $259,850"));
+								MessageCatalog.MSG_ACME_2_UNIT_PRINCIPAL));
 	}
 
 	@Test
@@ -147,11 +148,10 @@ public class AcmeLoansDSLTest extends BaseDroolsTestCase {
 		knowledgeSession.fireAllRules();
 
 		assertTrue(
-				"Application should have been declined because the principal for a 3 unit property must be no more than $314,100",
+				"Application should have been declined because " + MessageCatalog.MSG_ACME_3_UNIT_PRINCIPAL,
 				application
 						.getMessages()
-						.contains(
-								"Declined by ACME Mortgage because the principal for a 3 unit property must be no more than $314,100"));
+						.contains(MessageCatalog.MSG_ACME_3_UNIT_PRINCIPAL));
 	}
 
 	@Test
@@ -164,11 +164,10 @@ public class AcmeLoansDSLTest extends BaseDroolsTestCase {
 		knowledgeSession.fireAllRules();
 
 		assertTrue(
-				"Application should have been declined because the principal for a 4 unit property must be no more than $390,400",
+				"Application should have been declined because " + MessageCatalog.MSG_ACME_4_UNIT_PRINCIPAL,
 				application
 						.getMessages()
-						.contains(
-								"Declined by ACME Mortgage because the principal for a 4 unit property must be no more than $390,400"));
+						.contains(MessageCatalog.MSG_ACME_4_UNIT_PRINCIPAL));
 	}
 
 	@Test
@@ -180,11 +179,10 @@ public class AcmeLoansDSLTest extends BaseDroolsTestCase {
 		knowledgeSession.fireAllRules();
 
 		assertTrue(
-				"Application should have been declined because a principal that is a multiple of $50 is required",
+				"Application should have been declined because " + MessageCatalog.MSG_ACME_MULT_OF_50_PRINCIPAL,
 				application
 						.getMessages()
-						.contains(
-								"Declined by ACME Mortgage because a principal that is a multiple of $50 is required"));
+						.contains(MessageCatalog.MSG_ACME_MULT_OF_50_PRINCIPAL));
 	}
 
 	@Test
@@ -196,11 +194,10 @@ public class AcmeLoansDSLTest extends BaseDroolsTestCase {
 		knowledgeSession.fireAllRules();
 
 		assertTrue(
-				"Application should have been declined because lender only provides loans for purchasing or refinancing",
+				"Application should have been declined because " + MessageCatalog.MSG_ACME_LOAN_PURPOSE,
 				application
 						.getMessages()
-						.contains(
-								"Declined by ACME Mortgage because lender only provides loans for purchasing or refinancing"));
+						.contains(MessageCatalog.MSG_ACME_LOAN_PURPOSE));
 	}
 
 	@Test

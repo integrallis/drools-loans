@@ -5,7 +5,7 @@ rule "ACME-Fico"
 	    Mortgage(lender:lenderName == "ACME Mortgage",product:mortgageName)
 		application:LoanApplication( lenders contains lender, ficoScore<680 ) 
 	then
-		application.addMessage("Declined by " + lender + " because a FICO score of at least 680 is required");
+		application.addMessage(MessageCatalog.MSG_ACME_FICO_680);
 end
 
 rule "ACME-Principal"
@@ -13,7 +13,7 @@ rule "ACME-Principal"
 		mortgage:Mortgage(lender:lenderName == "ACME Mortgage",product:mortgageName)
 		application:LoanApplication(lenders contains lender, principal<50000)
 	then
-		application.addMessage("Declined by " + lender + " because a Principal of at least $50,000 is required");
+		application.addMessage(MessageCatalog.MSG_ACME_PRINCIPAL_50K);
 end
 
 rule "ACME-NumberOfUnits"
@@ -21,7 +21,7 @@ rule "ACME-NumberOfUnits"
 		mortgage:Mortgage(lender:lenderName == "ACME Mortgage",product:mortgageName)
 		application:LoanApplication(lenders contains lender, numberOfUnits>4)	
 	then
-		application.addMessage("Declined by " + lender + " because the number of units must not be greater than 4");
+		application.addMessage(MessageCatalog.MSG_ACME_4_UNIT_MAX);
 end
 
 rule "ACME-OneUnitPrincipal"
@@ -29,7 +29,7 @@ rule "ACME-OneUnitPrincipal"
 		mortgage:Mortgage(lender:lenderName == "ACME Mortgage",product:mortgageName)
 		application:LoanApplication(lenders contains lender, numberOfUnits==1, principal>=203150)	
 	then
-		application.addMessage("Declined by " + lender + " because the principal for a 1 unit property must be no more than $203,150");
+		application.addMessage(MessageCatalog.MSG_ACME_1_UNIT_PRINCIPAL);
 end
 
 rule "ACME-PrincipalMultipleOf50"
@@ -37,6 +37,6 @@ rule "ACME-PrincipalMultipleOf50"
 		mortgage:Mortgage(lender:lenderName == "ACME Mortgage",product:mortgageName)
 		application:LoanApplication(lenders contains lender, principal % 50 != 0)	
 	then
-		application.addMessage("Declined by " + lender + " because a principal that is a multiple of $50 is required");
+		application.addMessage(MessageCatalog.MSG_ACME_MULT_OF_50_PRINCIPAL);
 end
 

@@ -5,6 +5,7 @@ import static org.junit.Assert.assertTrue;
 import org.integrallis.drools.junit.BaseDroolsTestCase;
 import org.integrallis.drools.loans.domain.Applicant;
 import org.integrallis.drools.loans.domain.LoanApplication;
+import org.integrallis.drools.loans.domain.MessageCatalog;
 import org.integrallis.drools.loans.domain.Mortgage;
 import org.integrallis.drools.loans.util.LoansUtil;
 import org.junit.Before;
@@ -67,7 +68,7 @@ public class AcmeLoansTest extends BaseDroolsTestCase {
 				application
 						.getMessages()
 						.contains(
-								"Declined by ACME Mortgage because a FICO score of at least 680 is required"));
+								MessageCatalog.MSG_ACME_FICO_680));
 	}
 
 	@Test
@@ -82,7 +83,7 @@ public class AcmeLoansTest extends BaseDroolsTestCase {
 				application
 						.getMessages()
 						.contains(
-								"Declined by ACME Mortgage because a Principal of at least $50,000 is required"));
+								MessageCatalog.MSG_ACME_PRINCIPAL_50K));
 	}
 
 	@Test
@@ -97,7 +98,7 @@ public class AcmeLoansTest extends BaseDroolsTestCase {
 				application
 						.getMessages()
 						.contains(
-								"Declined by ACME Mortgage because the number of units must not be greater than 4"));
+								MessageCatalog.MSG_ACME_4_UNIT_MAX));
 	}
 
 	@Test
@@ -114,7 +115,7 @@ public class AcmeLoansTest extends BaseDroolsTestCase {
 				application
 						.getMessages()
 						.contains(
-								"Declined by ACME Mortgage because the principal for a 1 unit property must be no more than $203,150"));
+								MessageCatalog.MSG_ACME_1_UNIT_PRINCIPAL));
 	}
 //
 //	@Test
@@ -181,7 +182,7 @@ public class AcmeLoansTest extends BaseDroolsTestCase {
 				application
 						.getMessages()
 						.contains(
-								"Declined by ACME Mortgage because a principal that is a multiple of $50 is required"));
+								MessageCatalog.MSG_ACME_MULT_OF_50_PRINCIPAL));
 	}
 //
 //	@Test
