@@ -8,4 +8,4 @@
 .classpath
 .settings/ 
 bin
-/.DS_Store
+.DS_Store
