@@ -6,6 +6,5 @@
 *.ear
 
 .classpath
-.project 
 .settings/ 
 bin
