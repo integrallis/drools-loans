@@ -4,7 +4,7 @@
 [condition][]- with a Principal that is equal or greater than {principal}=principal>={principal}
 [condition][]- with a Principal that is less than {principal}=principal<{principal}
 [condition][]- with a Principal that is equal or more than {percentage}% of the Property Value=((((principal / propertyValue) * 100) > {percentage}))
-[condition][]- with a Principal that is not a multiple of {factor}=(principal % {factor} != 0)
+[condition][]- with a Principal that is not a multiple of {factor}=eval(principal % {factor} != 0)
 [condition][]- with a Number of Units greater than {units}=numberOfUnits>{units}
 [condition][]- with a Number of Units equal to {units}=numberOfUnits=={units}
 [condition][]- with a Loan Purpose that is not one of \[ {values} \]=loanPurpose not in ( {values} )

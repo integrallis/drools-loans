@@ -18,7 +18,7 @@ public class AcmeLoansDSLTest extends BaseDroolsTestCase {
 	private LoanApplication application;
 
 	public AcmeLoansDSLTest() {
-		super("acme-loans.dslr", "loans.dsl");
+		super("ksession-rules-dslr");
 	}
 
 	@Before

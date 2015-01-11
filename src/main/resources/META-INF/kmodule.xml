@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kmodule xmlns="http://jboss.org/kie/6.0.0/kmodule">
+  
+    <kbase name="rules-drl" packages="rules.drl">
+        <ksession name="ksession-rules-drl"/>
+    </kbase>
+    <kbase name="rules-dsl" packages="rules.dsl">
+        <ksession name="ksession-rules-dsl"/>
+    </kbase>
+    <kbase name="rules-dslr" packages="rules.dslr" includes="rules-dsl">
+        <ksession name="ksession-rules-dslr"/>
+    </kbase>
+    <kbase name="process" packages="process" includes="rules-dsl">
+        <ksession name="ksession-process"/>
+    </kbase>
+</kmodule>

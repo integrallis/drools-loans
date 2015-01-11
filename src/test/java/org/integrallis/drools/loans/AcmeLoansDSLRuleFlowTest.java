@@ -18,7 +18,7 @@ public class AcmeLoansDSLRuleFlowTest extends BaseDroolsTestCase {
 	
 
 	public AcmeLoansDSLRuleFlowTest() {
-		super("acme-loans-bpm.dslr", "loans.dsl", "loans-ruleflow.bpmn");
+		super("ksession-process");
 	}
 	
 	@Before

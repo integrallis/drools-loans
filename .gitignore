@@ -5,7 +5,6 @@
 *.war
 *.ear
 
-.classpath
-.settings/ 
+.settings/
 bin
 .DS_Store

@@ -35,7 +35,7 @@ end
 rule "ACME-PrincipalMultipleOf50"
 	when
 		mortgage:Mortgage(lender:lenderName == "ACME Mortgage",product:mortgageName)
-		application:LoanApplication(lenders contains lender, principal % 50 != 0)	
+		application:LoanApplication(lenders contains lender, eval(principal % 50 != 0))	
 	then
 		application.addMessage(MessageCatalog.MSG_ACME_MULT_OF_50_PRINCIPAL);
 end
