@@ -4,7 +4,7 @@
     <kbase name="rules-drl" packages="rules.drl">
         <ksession name="ksession-rules-drl"/>
     </kbase>
-    <kbase name="rules-dsl" packages="rules.dsl">
+    <kbase name="rules-dsl" packages="rules">
         <ksession name="ksession-rules-dsl"/>
     </kbase>
     <kbase name="rules-dslr" packages="rules.dslr" includes="rules-dsl">

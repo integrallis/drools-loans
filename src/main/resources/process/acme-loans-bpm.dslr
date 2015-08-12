@@ -3,7 +3,7 @@ package org.integrallis.drools.loans.domain
 import java.util.Date
 import java.util.Calendar
 
-expander loans.dsl
+expander rules/loans.dsl
 
 rule "ACME-Fico"
     ruleflow-group "qualification" 
